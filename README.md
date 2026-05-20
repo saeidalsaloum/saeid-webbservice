@@ -1,2 +1,2 @@
 # saeid-webbservice
-Enkel offentlig webbplats för Saeid Webbservice – hemsidor för småföretag.
+Offentlig statisk webbplats för Saeid Webbservice: tydlig webbkommunikation, text, struktur och kontaktvägar för företag i Sverige och Norden.
