@@ -254,31 +254,13 @@ strong {
   font-weight: 750;
 }
 
-.language-globe {
-  position: relative;
-  width: 16px;
-  height: 16px;
-  border: 1.5px solid currentColor;
-  border-radius: 50%;
-}
-
-.language-globe::before,
-.language-globe::after {
-  position: absolute;
-  content: "";
-}
-
-.language-globe::before {
-  inset: 3px 5px;
-  border-inline: 1px solid currentColor;
-  border-radius: 50%;
-}
-
-.language-globe::after {
-  left: 2px;
-  right: 2px;
-  top: 50%;
-  border-top: 1px solid currentColor;
+.language-icon {
+  inline-size: 1.0625rem;
+  block-size: 1.0625rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
 }
 
 .language-selector a {
