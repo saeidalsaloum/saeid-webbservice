@@ -911,6 +911,20 @@ strong {
   }
 }
 
+@media print {
+  html {
+    scroll-padding-top: 0;
+  }
+
+  .skip-link,
+  .site-header,
+  .header-actions,
+  .site-nav,
+  .language-selector {
+    display: none !important;
+  }
+}
+
 @media (max-width: 1024px) {
   h1 {
     font-size: 3.25rem;
