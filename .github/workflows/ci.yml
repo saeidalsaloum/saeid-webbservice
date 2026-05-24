@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-site-safety:
+    name: Static site safety checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate static files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          required_files = [
+              Path("index.html"),
+              Path("en/index.html"),
+              Path("no/index.html"),
+              Path("da/index.html"),
+              Path("styles.css"),
+          ]
+          missing = [str(path) for path in required_files if not path.is_file()]
+          if missing:
+              raise SystemExit("Missing required files: " + ", ".join(missing))
+
+          html_files = [path for path in required_files if path.suffix == ".html"]
+          forbidden_html_markers = (
+              "<script",
+              "<form",
+              "<input",
+              "<iframe",
+              "analytics",
+              "gtag(",
+              "googletagmanager",
+              "localstorage",
+              "sessionstorage",
+              "document.cookie",
+          )
+          for path in html_files:
+              text = path.read_text(encoding="utf-8")
+              lowered = text.lower()
+              for marker in forbidden_html_markers:
+                  if marker in lowered:
+                      raise SystemExit(f"Forbidden marker {marker!r} found in {path}")
+              if "<meta charset=\"utf-8\">" not in lowered:
+                  raise SystemExit(f"Missing UTF-8 meta tag in {path}")
+              if "name=\"viewport\"" not in lowered:
+                  raise SystemExit(f"Missing viewport meta tag in {path}")
+              if "rel=\"canonical\"" not in lowered:
+                  raise SystemExit(f"Missing canonical link in {path}")
+              if "hreflang" not in lowered:
+                  raise SystemExit(f"Missing hreflang links in {path}")
+
+          css = Path("styles.css").read_text(encoding="utf-8").lower()
+          forbidden_css_markers = ("@import", "url(http", "javascript:")
+          for marker in forbidden_css_markers:
+              if marker in css:
+                  raise SystemExit(f"Forbidden CSS marker {marker!r} found")
+
+          print("Static site safety checks passed.")
+          PY
