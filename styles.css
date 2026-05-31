@@ -76,8 +76,8 @@ h3 {
 }
 
 h1 {
-  max-width: 18ch;
-  font-size: 3.7rem;
+  max-width: 20ch;
+  font-size: 3.35rem;
   margin-bottom: 1.25rem;
   hyphens: none;
   overflow-wrap: normal;
@@ -292,7 +292,7 @@ strong {
 
 .hero {
   position: relative;
-  padding-top: 6rem;
+  padding: 5rem 0 4.25rem;
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(135deg, rgba(15, 118, 110, 0.08) 0%, rgba(15, 118, 110, 0) 44%),
@@ -569,20 +569,24 @@ strong {
 }
 
 .audit-list li {
-  display: grid;
-  grid-template-columns: 0.7rem 1fr;
+  display: flex;
   gap: 0.65rem;
   align-items: start;
   color: var(--muted);
 }
 
 .audit-list li::before {
+  flex: 0 0 auto;
   width: 0.5rem;
   height: 0.5rem;
   margin-top: 0.48rem;
   border-radius: 2px;
   background: var(--signal);
   content: "";
+}
+
+.audit-list strong {
+  color: var(--text);
 }
 
 .muted {
@@ -1550,7 +1554,7 @@ strong {
 
 @media (max-width: 1024px) {
   h1 {
-    font-size: 3.25rem;
+    font-size: 3rem;
   }
 
   .header-inner {
@@ -1568,7 +1572,11 @@ strong {
 
 @media (max-width: 820px) {
   html {
-    scroll-padding-top: 12rem;
+    scroll-padding-top: 1.25rem;
+  }
+
+  .site-header {
+    position: static;
   }
 
   .header-inner {
@@ -1625,12 +1633,12 @@ strong {
   }
 
   .hero {
-    padding-top: 4rem;
+    padding: 3rem 0 3.25rem;
   }
 
   h1 {
-    max-width: 16ch;
-    font-size: 2.65rem;
+    max-width: 18ch;
+    font-size: 2.55rem;
   }
 
   h2 {
@@ -1658,7 +1666,7 @@ strong {
 @media (max-width: 540px) {
   h1 {
     max-width: 100%;
-    font-size: clamp(1.72rem, 8vw, 2.65rem);
+    font-size: 2.25rem;
   }
 
   .demo-intro {
@@ -1725,7 +1733,7 @@ strong {
 
   h1 {
     max-width: 100%;
-    font-size: clamp(1.72rem, 8vw, 2.2rem);
+    font-size: 2.05rem;
   }
 
   h2 {
@@ -1779,6 +1787,10 @@ strong {
 }
 
 @media (max-width: 360px) {
+  .language-label {
+    display: none;
+  }
+
   h2,
   h3 {
     hyphens: auto;
