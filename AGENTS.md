@@ -4,7 +4,7 @@
 
 Work only inside this repository:
 
-`/Users/saeidalsaloum/Projects/saeid-webbservice`
+`saeidalsaloum/saeid-webbservice` on GitHub, in whichever local or cloud checkout it is opened from. Do not assume a fixed local folder path; treat the root of the current git checkout as the repository boundary.
 
 Do not read from, copy from, or modify other repositories or folders unless the owner gives explicit instructions for a specific file.
 
